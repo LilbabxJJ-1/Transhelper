@@ -4,10 +4,10 @@ from discord.ext import commands
 import random
 import time
 # <-----------------------------------Bot--------------------------------------------->
-bot = commands.Bot(command_prefix='-', case_insensitive=True)
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True)
 
 
-class Trans(commands.Cog):
+class Start(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

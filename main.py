@@ -1,8 +1,10 @@
-# <----------------------------------Imports---------------------------------------->
+# <----------------------------------MainImports---------------------------------------->
 import discord
 from discord.ext import commands
+# <----------------------------------FileImports---------------------------------------->
 from commandss import start as s
-# <-----------------------------------Bot--------------------------------------------->
+from commandss import mod as m
+# <-----------------------------------Bot----------------------------------------------->
 # Create a bot
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True)
 
@@ -49,6 +51,7 @@ async def clear(ctx, amount=5):
 
 
 def run():
-    bot.add_cog(s.Trans(bot))
+    bot.add_cog(s.Start(bot))
+    bot.add_cog(m.Mod(bot))
     bot.run("")
 run()
