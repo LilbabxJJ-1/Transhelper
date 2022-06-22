@@ -12,7 +12,10 @@ class Mod(commands.Cog):
 
     @commands.command()
     async def clear(self, ctx, amount=10):
+        def is_pinned(msg):
+            if not msg.pinned:
+                return 1 == 1
+
         await ctx.message.delete()
-        for i in await ctx.channel.purge(limit=amount):
-            print(i)
-        await ctx.send(f"{amount} messages deleted", delete_after=5)
+        await ctx.channel.purge(limit=amount, check=is_pinned)
+        await ctx.send(f"{amount} messages deleted and skipped all pinned messages", delete_after=5)

@@ -42,12 +42,6 @@ async def nickname(ctx, nick):
         await ctx.send(f"{ctx.message.author.name}'s nickname has been changed to {nick}")
 
 
-@bot.command()
-async def clear(ctx, amount=5):
-    await ctx.message.delete()
-    await ctx.channel.purge(limit=amount)
-    await ctx.send(f"{amount} messages deleted", delete_after=5)
-
 
 
 def run():
