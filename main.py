@@ -50,5 +50,5 @@ async def clear(ctx, amount=5):
 
 def run():
     bot.add_cog(s.Trans(bot))
-    bot.run("OTg0NjI2OTYyMTcxNTY4MTg4.GJ-x80.0nP6els4BN9tZNC5e6dMiYXl1H0mLu04I-7QRg")
+    bot.run("")
 run()
