@@ -17,12 +17,6 @@ async def on_ready():
 
 
 @bot.command()
-async def taco(ctx):
-    await ctx.message.mentions[0].edit(nick="Taco")
-    await ctx.send(f"{ctx.message.mentions[0].name}'s name has been changed to taco lol")
-
-
-@bot.command()
 async def nickname(ctx, nick):
     l = ["<", "@", "#", ">"]
     if PermissionError:

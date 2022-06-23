@@ -18,7 +18,7 @@ class Start(commands.Cog):
 
 
     @commands.command()
-    async def test(ctx, name, pronouns):
+    async def test(self, ctx, name, pronouns):
         ll = ""
         ll2 = []
         for i in pronouns:
@@ -39,19 +39,32 @@ class Start(commands.Cog):
         time.sleep(3)
         await ctx.send(random.choice(t_choices1))
 
+
     @commands.command()
-    async def embed(ctx):
-        lol = await ctx.send("What should the title be? ")
-        title = await bot.wait_for("message", timeout=30)
+    async def embed(self, ctx):
+        def check(msg):
+            if msg.author != self.bot.user:
+                return True
+
+        lol = await ctx.send("What should the title be?")
+        title = await self.bot.wait_for('message', timeout=30, check=check)
         await lol.delete()
         lol2 = await ctx.send("What should the message say?")
-        message = await bot.wait_for('message', timeout=300)
+        message = await self.bot.wait_for('message', timeout=300, check=check)
         await lol2.delete()
+        lol3 = await ctx.send("Ping the channel I show send it in")
+        chn = await self.bot.wait_for("message", timeout=30, check=check)
+        await lol3.delete()
+        when = await ctx.send("Processing...")
+        time.sleep(1.5)
+        await when.delete()
+        await ctx.send("Embed Sent!")
         final = ""
         for i in message.content:
             if i == "\n":
                 final += "\n"
             else:
                 final += i
-        embed = discord.Embed(title=title.content, description=final)
-        await ctx.send(embed=embed)
+        embed = discord.Embed(title=title.content, description=final, color=0xFF10F0)
+        await chn.channel_mentions[0].send(embed=embed)
+

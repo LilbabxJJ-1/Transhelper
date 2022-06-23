@@ -19,3 +19,8 @@ class Mod(commands.Cog):
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount, check=is_pinned)
         await ctx.send(f"{amount} messages deleted and skipped all pinned messages", delete_after=5)
+
+
+    @commands.command()
+    async def warn(self, ctx, user: discord.member, warning):
+        await ctx.send("")
