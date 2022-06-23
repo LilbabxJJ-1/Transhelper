@@ -43,5 +43,5 @@ async def ping(ctx):
 def run():
     bot.add_cog(s.Start(bot))
     bot.add_cog(m.Mod(bot))
-    bot.run("OTg0NjI2OTYyMTcxNTY4MTg4.GfT0gh.1EEbN-Pq2ZCvBK9wk17F8gldXYphzE-D9th18w")
+    bot.run("")
 run()
