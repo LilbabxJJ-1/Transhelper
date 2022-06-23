@@ -23,6 +23,20 @@ class Mod(commands.Cog):
 
     @commands.command(hidden=True)
     async def embed(self, ctx):
+        role = ctx.guild.get_role(989628090995077190)
+        has_role = False
+        for i in ctx.author.roles:
+            if role.id == i.id:
+                has_role = True
+            else:
+                pass
+
+        if has_role:
+            pass
+        else:
+            await ctx.send("You don't have the permission to do this. Only Staff can use this")
+            return
+
         def check(msg):
             if msg.author != self.bot.user:
                 return True

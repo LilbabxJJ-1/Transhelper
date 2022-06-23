@@ -23,7 +23,17 @@ async def on_ready():
 @bot.event
 async def on_member_join(ctx):
     chn = bot.get_channel(d.Server.welcome)
-    await chn.send(f"""Hey {ctx.mention}!{mg.welcome}""")
+    chn2 = bot.get_channel(d.Server.logs)
+    guild = bot.get_guild(d.Server.guild)
+    roles = guild.get_role(985963383931166810)
+    await ctx.add_roles(roles)
+    await chn2.send(f"Unverified role has been given to {ctx.mention}")
+    embed = discord.Embed(title=f"Welcome to Trans Town {ctx.name}",
+                          description=f"﹒︵︵︵︵ ⁺. ✧ .⁺ ︵︵︵︵\n"
+                          f"""Hey {ctx.mention}!{mg.welcome}""",
+                          color=0xFF10F0)
+    embed.set_image(url="https://media.discordapp.net/attachments/920291832611614750/989459750662066197/ec1b529086996a4958f97c8d77feb288.gif")
+    await chn.send(ctx.mention, embed=embed)
 
 @bot.command()
 async def ping(ctx):
@@ -33,5 +43,5 @@ async def ping(ctx):
 def run():
     bot.add_cog(s.Start(bot))
     bot.add_cog(m.Mod(bot))
-    bot.run("")
+    bot.run("OTg0NjI2OTYyMTcxNTY4MTg4.GfT0gh.1EEbN-Pq2ZCvBK9wk17F8gldXYphzE-D9th18w")
 run()
