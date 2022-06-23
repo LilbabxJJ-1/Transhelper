@@ -40,31 +40,30 @@ class Start(commands.Cog):
         await ctx.send(random.choice(t_choices1))
 
 
-    @commands.command()
-    async def embed(self, ctx):
-        def check(msg):
-            if msg.author != self.bot.user:
-                return True
-
-        lol = await ctx.send("What should the title be?")
-        title = await self.bot.wait_for('message', timeout=30, check=check)
-        await lol.delete()
-        lol2 = await ctx.send("What should the message say?")
-        message = await self.bot.wait_for('message', timeout=300, check=check)
-        await lol2.delete()
-        lol3 = await ctx.send("Ping the channel I show send it in")
-        chn = await self.bot.wait_for("message", timeout=30, check=check)
-        await lol3.delete()
-        when = await ctx.send("Processing...")
-        time.sleep(1.5)
-        await when.delete()
-        await ctx.send("Embed Sent!")
-        final = ""
-        for i in message.content:
-            if i == "\n":
-                final += "\n"
+    @commands.command(aliases=["nick"])
+    async def nickname(self, ctx, nick):
+            l = ["<", "@", "#", ">"]
+            if PermissionError:
+                await ctx.send("Cannot change Owners nickname")
+            for i in l:
+                if i in nick:
+                    await ctx.send("Nickname cannot contain these symbols: **<, @, #, >**")
+                    return
+            if nick == "":
+                await ctx.send("Nickname is empty")
+            elif len(nick) > 32:
+                await ctx.send("Nickname is too long")
+            elif len(nick) < 2:
+                await ctx.send("Nickname is too short")
             else:
-                final += i
-        embed = discord.Embed(title=title.content, description=final, color=0xFF10F0)
-        await chn.channel_mentions[0].send(embed=embed)
+                await ctx.message.author.edit(nick=nick)
+                await ctx.send(f"{ctx.message.author.name}'s nickname has been changed to {nick}")
 
+    @nickname.error
+    async def nickname_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send("Please Provide a nickname")
+        elif isinstance(error, commands.BotMissingPermissions):
+            await ctx.send("I don't have the perms to do this")
+        else:
+            print(error)

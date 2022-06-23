@@ -4,10 +4,13 @@ from discord.ext import commands
 # <----------------------------------FileImports---------------------------------------->
 from commandss import start as s
 from commandss import mod as m
+from data import IDs as d
+from data import msgs as mg
 # <-----------------------------------Bot----------------------------------------------->
 # Create a bot
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True)
-
+intents = discord.Intents.all()
+activity = discord.Activity(type=discord.ActivityType.watching, name='Trans Town', url="https://discord.gg/unZUS5r5P7")
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True, activity=activity, intents=intents)
 
 
 
@@ -16,27 +19,16 @@ async def on_ready():
     print(f"{bot.user.name} is online!")
 
 
+
+@bot.event
+async def on_member_join(ctx):
+    chn = bot.get_channel(d.Server.welcome)
+    await chn.send(f"""Hey {ctx.mention}!{mg.welcome}""")
+
 @bot.command()
-async def nickname(ctx, nick):
-    l = ["<", "@", "#", ">"]
-    if PermissionError:
-        await ctx.send("Cannot change Owners nickname")
-    for i in l:
-        if i in nick:
-            await ctx.send("Nickname cannot contain these symbols: **<, @, #, >**")
-            return
-    if nick == "":
-        await ctx.send("Nickname is empty")
-    elif len(nick) > 32:
-        await ctx.send("Nickname is too long")
-    elif len(nick) < 2:
-        await ctx.send("Nickname is too short")
-    else:
-        await ctx.message.author.edit(nick=nick)
-        await ctx.send(f"{ctx.message.author.name}'s nickname has been changed to {nick}")
-
-
-
+async def ping(ctx):
+    print(d.Server.welcome)
+    await ctx.send("pong!")
 
 def run():
     bot.add_cog(s.Start(bot))
