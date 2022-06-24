@@ -3,8 +3,9 @@ import discord
 from discord.ext import commands
 import random
 import time
+import sys
 # <-----------------------------------Bot--------------------------------------------->
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True)
+
 
 
 class Start(commands.Cog):
@@ -13,15 +14,14 @@ class Start(commands.Cog):
 
     @commands.command()
     async def divide(self, ctx, a: int, b: int):
-        await ctx.send(ctx.channel.id)
         await ctx.send(f"If you put {a} into {b} groups, you get {a / b} in each group.")
 
 
     @commands.command()
-    async def test(self, ctx, name, pronouns):
+    async def pronouns(self, ctx, name, pronoun):
         ll = ""
         ll2 = []
-        for i in pronouns:
+        for i in pronoun:
             if i == "/":
                 ll2.append(ll)
                 ll = ""

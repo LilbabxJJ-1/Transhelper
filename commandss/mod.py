@@ -2,7 +2,6 @@
 import discord
 from discord.ext import commands
 # <-----------------------------------Bot--------------------------------------------->
-bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True)
 
 
 
@@ -39,6 +38,8 @@ class Mod(commands.Cog):
 
         def check(msg):
             if msg.author != self.bot.user:
+                pass
+            if msg.author == ctx.author:
                 return True
 
         lol = await ctx.send("What should the title be?")
