@@ -30,16 +30,24 @@ async def on_member_join(ctx):
     await chn2.send(f"Unverified role has been given to {ctx.mention}")
     embed = discord.Embed(title=f"Welcome to Trans Town {ctx.name}",
                           description=f"﹒︵︵︵︵ ⁺. ✧ .⁺ ︵︵︵︵\n"
-                          f"""Hey {ctx.mention}!{mg.welcome}""",
+                                      f"""Hey {ctx.mention}!{mg.welcome}""",
                           color=0xFF10F0)
     embed.set_image(url="https://media.discordapp.net/attachments/920291832611614750/989459750662066197/ec1b529086996a4958f97c8d77feb288.gif")
     await chn.send(ctx.mention, embed=embed)
 
+
+@bot.event
+async def on_member_leave(ctx):
+    chn = bot.get_channel(d.Server.welcome)
+    await chn.send(f"{ctx.name} has left the server :(")
+
+
 @bot.event
 async def on_message(mes):
     if mes.content == bot.user.mention:
-       await mes.channel.send("Hiya! Ya pinged? My prefix is `-`\n For commands, do -menu")
+        await mes.channel.send("Hiya! Ya pinged? My prefix is `-`\n For commands, do -menu")
     await bot.process_commands(mes)
+
 
 @bot.command()
 async def ping(ctx):

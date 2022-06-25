@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 import random
 import time
-import sys
 # <-----------------------------------Bot--------------------------------------------->
 
 
@@ -67,3 +66,11 @@ class Start(commands.Cog):
             await ctx.send("I don't have the perms to do this")
         else:
             print(error)
+
+    @commands.command()
+    async def loaf(self, ctx):
+        embed = discord.Embed(title="Love Loaf")
+        loafs = ["https://redstaryeast.com/wp-content/uploads/2014/09/Cinnamon-Heart-Bread.jpg",
+                 "https://images-gmi-pmc.edge-generalmills.com/94108f4d-6772-4d07-86d8-822f293be659.jpg"]
+        embed.set_image(url=random.choice(loafs))
+        await ctx.send(embed=embed)
