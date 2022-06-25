@@ -12,13 +12,15 @@ if it has neither, it means you don't need any extra info
 
 **Mod Commands**
 -Embed
-
 -Clear `[amount]` *Default is 10* 
 `ex. -clear 15`
 
+-Verify `<member>`
+`ex. -verify @wumpus`
+
 **General**
 -Pronouns <Name> <Pro/Noun> 
-`ex. -pronouns Jade She/Her`
+`ex. -pronouns Wumpus They/Them`
 
 -Nick <New Nick>
 `ex. -nick wumpus`

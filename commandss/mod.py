@@ -1,6 +1,7 @@
 # <----------------------------------Imports---------------------------------------->
 import discord
 from discord.ext import commands
+from data import IDs as d
 # <-----------------------------------Bot--------------------------------------------->
 
 
@@ -18,7 +19,6 @@ class Mod(commands.Cog):
         await ctx.message.delete()
         await ctx.channel.purge(limit=amount, check=is_pinned)
         await ctx.send(f"{amount} messages deleted and skipped all pinned messages", delete_after=5)
-
 
     @commands.command(hidden=True)
     async def embed(self, ctx):
@@ -64,3 +64,27 @@ class Mod(commands.Cog):
         await chn.channel_mentions[0].send(embed=embed)
         await when.delete()
         await ctx.send("Embed Sent!")
+
+
+    @commands.command()
+    async def verify(self, ctx):
+        await ctx.message.delete()
+        role = ctx.guild.get_role(989628090995077190)
+        has_role = False
+        for i in ctx.author.roles:
+            if role.id == i.id:
+                has_role = True
+            else:
+                pass
+        if has_role:
+            pass
+        else:
+            await ctx.send("You don't have the permission to do this. Only Staff can use this")
+            return
+        guild = self.bot.get_guild(d.Server.guild)
+        roles = guild.get_role(985963383931166810)
+        roles2 = guild.get_role(985963267774120036)
+        mem = ctx.message.mentions[0]
+        await mem.remove_roles(roles)
+        await mem.add_roles(roles2)
+        await ctx.send(f"{mem.name} has been verified", delete_after=5)
