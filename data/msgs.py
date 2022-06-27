@@ -47,3 +47,5 @@ if it has neither, it means you don't need any extra info
 -Menu : This command
 
 """
+
+entry = """Welcome to Trans Town! Make an intro in <#985957835185737828> and take a look around! Hope you enjoy your stay here"""

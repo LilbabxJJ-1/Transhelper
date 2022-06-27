@@ -37,7 +37,7 @@ async def on_member_join(ctx):
 
 
 @bot.event
-async def on_member_leave(ctx):
+async def on_member_remove(ctx):
     chn = bot.get_channel(d.Server.welcome)
     await chn.send(f"{ctx.name} has left the server :(")
 
@@ -45,7 +45,7 @@ async def on_member_leave(ctx):
 @bot.event
 async def on_message(mes):
     if mes.content == bot.user.mention:
-        await mes.channel.send("Hiya! Ya pinged? My prefix is `-`\n For commands, do -menu")
+        await mes.channel.send("Hiya! Ya pinged? My prefix is `-`\nFor commands, do -menu")
     await bot.process_commands(mes)
 
 
