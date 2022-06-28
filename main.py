@@ -14,7 +14,6 @@ activity = discord.Activity(type=discord.ActivityType.watching, name='Trans Town
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('-'), case_insensitive=True, activity=activity, intents=intents, help_command=None)
 
 
-
 @bot.event
 async def on_ready():
     print(f"{bot.user.name} is online!")

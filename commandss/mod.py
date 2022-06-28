@@ -92,5 +92,40 @@ class Mod(commands.Cog):
         await mem.remove_roles(roles)
         await mem.add_roles(roles2)
         embed = discord.Embed(title=f"Welcome {mem.name}", description=m.entry, color=0xFF10F0)
-        await chn.send(embed=embed)
+        await chn.send(f"<@&990140702677671936>", embed=embed)
         await ctx.send(f"{mem.name} has been verified", delete_after=5)
+
+    @commands.command()
+    async def warn(self, ctx, member, *warning):
+        await ctx.message.delete()
+        role = ctx.guild.get_role(989628090995077190)
+        has_role = False
+        for i in ctx.author.roles:
+            if role.id == i.id:
+                has_role = True
+            else:
+                pass
+        if has_role:
+            pass
+        else:
+            await ctx.send("You don't have the permission to do this. Only Staff can use this")
+            return
+        guild = self.bot.get_guild(d.Server.guild)
+        try:
+            mem = ctx.message.mentions[0]
+        except IndexError:
+            mem = guild.get_member(member)
+        if mem is None:
+            await ctx.send("That member isn't in this server")
+        else:
+            final = ""
+            for i in warning:
+                final += f"{i} "
+            if len(final) < 1:
+                await ctx.send("You need to give a reason")
+                return
+            chn = guild.get_channel(d.Server.warn)
+            embed = discord.Embed(title="Warning!",
+                                  description=f"{mem.mention}, you have been warned for: {final}",
+                                  color=0xFF10F0)
+            await chn.send(mem.mention, embed=embed)
