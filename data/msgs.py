@@ -18,12 +18,18 @@ if it has neither, it means you don't need any extra info
 -Verify `<member>`
 `ex. -verify @wumpus`
 
+-Warn `<member>` `<reason>`
+`ex. -warn @wumpus Not sharing`
+
 **General**
--Pronouns <Name> <Pro/Noun> 
+-Pronouns `<Name>` `<Pro/Noun>` 
 `ex. -pronouns Wumpus They/Them`
 
--Nick <New Nick>
+-Nick `<New Nick>`
 `ex. -nick wumpus`
+
+-Avatar `[ID]`
+`ex. -Avatar`
 
 **Help**
 -Menu : This command
@@ -42,6 +48,9 @@ if it has neither, it means you don't need any extra info
 
 -Nick <New Nick>
 `ex. -nick wumpus`
+
+-Avatar `[ID]`
+`ex. -Avatar`
 
 **Help**
 -Menu : This command

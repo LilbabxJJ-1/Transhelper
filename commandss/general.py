@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import random
 import time
+from data import IDs as d
 # <-----------------------------------Bot--------------------------------------------->
 
 
@@ -74,3 +75,20 @@ class Start(commands.Cog):
                  "https://images-gmi-pmc.edge-generalmills.com/94108f4d-6772-4d07-86d8-822f293be659.jpg"]
         embed.set_image(url=random.choice(loafs))
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def avatar(self, ctx, id=None):
+        if id is None:
+            mem = self.bot.get_user(ctx.author.id)
+            embed = discord.Embed(title=f"{ctx.author.name}'s Avatar", color=0xFF10F0)
+            print(mem.avatar)
+            embed.set_image(url=f"https://cdn.discordapp.com/avatars/{mem.id}/{mem.avatar}.png")
+            await ctx.send(embed=embed)
+        else:
+            mem = self.bot.get_user(int(id))
+            if mem is None:
+                await ctx.send("Couldn't Find that user")
+                return
+            embed = discord.Embed(title=f"{mem.name}'s Avatar", color=0xFF10F0)
+            embed.set_image(url=f"https://cdn.discordapp.com/avatars/{mem.id}/{mem.avatar}.png")
+            await ctx.send(embed=embed)

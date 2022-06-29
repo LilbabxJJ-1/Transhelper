@@ -9,7 +9,7 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(aliases=["help"])
     async def menu(self, ctx):
         role = ctx.guild.get_role(989628090995077190)
         has_role = False
