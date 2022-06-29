@@ -7,6 +7,7 @@ from commandss import mod as m
 from data import IDs as d
 from data import msgs as mg
 from commandss import help as h
+from tokens import tokens
 # <-----------------------------------Bot----------------------------------------------->
 # Create a bot
 intents = discord.Intents.all()
@@ -58,7 +59,7 @@ def run():
     bot.add_cog(s.Start(bot))
     bot.add_cog(m.Mod(bot))
     bot.add_cog(h.Help(bot))
-    bot.run("")
+    bot.run(tokens)
 
 
 run()
